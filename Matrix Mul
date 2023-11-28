@@ -1,0 +1,23 @@
+struct Matrix{
+    int n, m;
+    vector<vL> c;
+    Matrix(int n = 0, int m = 0) : n(n), m(m), c(n + 2, vL(m + 2, 0)) {};
+    Matrix operator * (const Matrix &other) const{
+        Matrix e(n, other.m);
+        fu(i, 1, n) fu(j, 1, other.m) fu(k, 1, m){
+            add(e.c[i][j], c[i][k] * other.c[k][j] % Mod);
+        }
+        return e;
+    }
+    Matrix original(int sz){
+        Matrix e(sz, sz);
+        fu(i, 1, sz) e.c[i][i] = 1;
+        return e;
+    }
+    Matrix pw(ll sz){
+        Matrix a = *this;
+        if(!sz) return original(m);
+        Matrix b = pw(sz >> 1); b = b * b;
+        return (sz & 1 ? b * a : b);
+    }
+};
