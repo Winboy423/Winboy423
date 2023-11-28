@@ -1,0 +1,32 @@
+int n, m, point, edge, timedfs, low[N], num[N];
+vI adj[N];
+bool flag[N];
+void dfs(int u, int p){
+    int child = 0;
+    low[u] = num[u] = ++timedfs;
+    fe(v, adj[u]) if(v != p){
+        if(!num[v]){
+            dfs(v, u); child++;
+            Minimize(low[u], low[v]);
+            edge += low[v] == num[v];
+            if(u == p) flag[u] |= (child > 1);
+            else if(low[v] >= num[u]) flag[u] = 1;
+        }else Minimize(low[u], num[v]);
+    }
+}
+int main(){
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    if(fopen(File".INP", "r")){
+        freopen(File".INP", "r", stdin); freopen(File".OUT", "w", stdout);
+    }
+    cin >> n >> m;
+    fu(i, 1, m){
+        int u, v; cin >> u >> v;
+        adj[u].pb(v); adj[v].pb(u);
+    }
+    fu(i, 1, n) if(!num[i]) dfs(i, i);
+    fu(i, 1, n) point += flag[i];
+    cout << point << " " << edge << '\n';
+    return 0;
+
+}
