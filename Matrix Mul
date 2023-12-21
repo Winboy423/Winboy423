@@ -14,10 +14,9 @@ struct Matrix{
         fu(i, 1, sz) e.c[i][i] = 1;
         return e;
     }
-    Matrix pw(ll sz){
-        Matrix a = *this;
-        if(!sz) return original(m);
-        Matrix b = pw(sz >> 1); b = b * b;
-        return (sz & 1 ? b * a : b);
-    }
 };
+Matrix pw(Matrix &a, ll b){
+    if(!b) return Matrix(a.n, a.m).original(a.m);
+    Matrix c = pw(a, b >> 1); c = c * c;
+    return (b & 1 ? c * a : c);
+}
