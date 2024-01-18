@@ -1,0 +1,48 @@
+struct line{
+    ll a, b;
+    line(ll _a, ll _b) : a(_a), b(_b) {};
+    line() : a(0), b(0) {};
+    ll get(ll x){
+        return a * x + b;
+    }
+};
+struct node{
+    node *l, *r;
+    line e;
+    node(){
+        l = r = NULL;
+        e = line(0, inf);
+    }
+};
+struct segtree{
+    node *root = new node();
+    void update(node *&pos, ll l, ll r, line e){
+        if(l == r){
+            if(pos->e.get(l) > e.get(l)) pos->e = e;
+            return;
+        }
+        ll mid = (l + r) >> 1;
+        if(pos->e.a < e.a) swap(pos->e, e);
+        if(pos->e.get(mid) > e.get(mid)){
+            swap(pos->e, e);
+            if(pos->l == NULL) pos->l = new node();
+            update(pos->l, l, mid, e);
+        }else{
+            if(pos->r == NULL) pos->r = new node();
+            update(pos->r, mid + 1, r, e);
+        }
+    }
+    void update(line e){
+        update(root, -100, 100, e);
+    }
+    ll get(node *&pos, ll l, ll r, ll x){
+        if(pos == NULL) return inf;
+        if(l == r) return pos->e.get(x);
+        ll mid = (l + r) >> 1;
+        if(x <= mid) return min(pos->e.get(x), get(pos->l, l, mid, x));
+        return min(pos->e.get(x), get(pos->r, mid + 1, r, x));
+    }
+    ll get(ll x){
+        return get(root, -100, 100, x);
+    }
+};
