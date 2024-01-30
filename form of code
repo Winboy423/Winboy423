@@ -1,0 +1,103 @@
+#pragma GCC             optimize("Ofast")
+#pragma GCC             optimize("O3")
+#pragma GCC             optimize("unroll-loops")
+#pragma GCC             target("avx,avx2,fma")
+#include<bits/stdc++.h>
+typedef unsigned long long     ull;
+typedef long double            ld;
+typedef long long              ll;
+using namespace std;
+
+const double eps    =   1e-8;
+const ll base       =   31;
+const ll MAX        =   1e5 + 10;
+const ll mod        =   998244353;
+const ll inf        =   1e18;
+const ll N          =   1e5 + 5;
+
+// VARIABLE
+#define pii             pair<int, int>
+#define pll             pair<ll, ll>
+#define fi              first
+#define se              second
+#define vi              vector<int>
+#define vl              vector<ll>
+#define mp              make_pair
+// SHORTCUTS
+#define redup(s)        sort(all(s)), (s).resize(unique(all(s)) - (s).begin())
+#define all(s)          s.begin(), s.end()
+#define lb              lower_bound
+#define ub              upper_bound
+#define pb              push_back
+// FUNCTIONS
+#define fu(i, a, b)     for(int i = a; i <= b; ++i)
+#define fd(i, a, b)     for(int i = a; i >= b; --i)
+#define fe(i, adj)      for(auto i : adj)
+#define debug(...)      " [" << #__VA_ARGS__ " = " << (__VA_ARGS__) << "] "
+#define mask(s)         (1LL << (s))
+#define sz(s)           (int) s.size()
+#define fs(s)           fixed << setprecision(s)
+
+// TEMPLATE
+template <class T>
+    bool minimize(T &x, T y){return (x > y ? x = y, true : false);}
+
+template <class T>
+    bool maximize(T &x, T y){return (x < y ? x = y, true : false);}
+
+template <class T>
+    void add(T &x, T y){x += y; if(x >= mod) x -= mod;}
+
+template <class T>
+    void sub(T &x, T y){x -= y; if(x < 0) x += mod;}
+
+template <class T>
+    T gcd(T x, T y){return (!y ? x : gcd(y, x % y));}
+
+// CAL
+#define lcm(x, y)       (x) / gcd(x, y) * y
+#define sqr(x)          abs(x) * abs(x)
+// BITWISE
+#define bit(msk, i)     ((msk) >> (i)) & 1
+#define logOf(msk)      63 - clz(msk)
+#define lbit(msk)       ((msk) & (-msk))
+#define cbit(msk)       __builtin_popcountll(msk)
+#define ctz(msk)        __builtin_ctzll(msk)
+#define clz(msk)        __builtin_clzll(msk)
+
+int dx[8] = {1, -1, 0, 0, 1, 1, -1, -1},
+    dy[8] = {0, 0, 1, -1, 1, -1, 1, -1};
+
+/// ===================================== - MAIN - ===================================== ///
+#define File "TRIANGREST"
+
+void input(){
+
+}
+void brute_force(){
+
+}
+void full(){
+
+}
+void prepare(){
+
+}
+void solve(){
+
+}
+signed main(){
+    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+    if(fopen(File".INP", "r")){
+        freopen(File".INP", "r", stdin); freopen(File".OUT", "w", stdout);
+    }
+//    int subtask; cin >> subtask;
+    int t = 1;
+    //cin >> t;
+    while(t--){
+        input();
+        prepare();
+        solve();
+    }
+    return 0;
+}
