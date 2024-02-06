@@ -1,0 +1,4 @@
+1. gcd(a, b) = c
+=> gcd(a * d, b * d) = c * d
+2. gcd(a, n) * gcd(b, n) = gcd(a * b, n) <- if(n % a == 0 && n % b == 0)
+3. 
