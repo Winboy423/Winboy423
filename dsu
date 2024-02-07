@@ -1,28 +1,25 @@
-ll n, m, q;
-struct edge{
-    ll u, v, c;
-    edge(ll u = 0, ll v = 0, ll c = 0) : u(u), v(v), c(c) {};
-    bool operator < (const edge &other) const{
-        return c < other.c;
-    }
-};
-ll res[MAX];
 struct dsu{
-    vector<ll> p, l;
-    dsu(ll n = 0) : p(n), l(n) {
-        fu(i, 1, n - 1) p[i] = i, l[i] = 1;
-    };
-    ll findp(ll u){
-        return (u == p[u] ? u : p[u] = findp(p[u]));
+    vl p, l;
+    stack<ll> st;
+    dsu(ll n = 0){
+        p.resize(n + 10);
+        l.resize(n + 10);
+        fu(i, 1, n) p[i] = i, l[i] = 1;
     }
-    bool Union(ll u, ll v, ll c){
-        u = findp(u), v = findp(v);
-        if(u != v){
-            if(l[u] < l[v]) return Union(v, u, c);
-            res[c] += l[u] * l[v];
-            l[u] += l[v], p[v] = u;
-            return true;
-        }
-        return false;
+    ll find_set(ll u){
+        return (u == p[u] ? u : find_set(p[u]));
     }
-};
+    bool join_set(ll u, ll v){
+        u = find_set(u), v = find_set(v);
+        if(u == v) return false;
+        if(l[u] < l[v]) swap(u, v);
+        p[v] = u, l[u] += l[v];
+        st.push(v);
+        return true;
+    }
+    void roll_back(){
+        ll u = st.top(); st.pop();
+        l[p[u]] -= l[u];
+        p[u] = u;
+    }
+} dsus;
