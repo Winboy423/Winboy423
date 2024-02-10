@@ -1,0 +1,6 @@
+ll pw[N], Hash[N];
+void computeHash(){
+    pw[0] = 1;
+    fu(i, 1, 2e5) pw[i] = pw[i - 1] * base % mod;
+    fu(i, 1, n) Hash[i] = (Hash[i - 1] * base + (s[i] - 'a' + 1)) % mod;
+}
